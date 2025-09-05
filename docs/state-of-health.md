@@ -19,9 +19,7 @@ Button available in running experiment.
 
 ![screenshot](images/exp_run.png){: width=200 .center}
 
-## Topology Graph
-
-This tab displays a network graph of the running experiment.
+The SoH view displays a network graph of the running experiment.
 
 ![screenshot](images/net_graph.png){: width=800 .center}
 
@@ -73,33 +71,6 @@ given VM, it will be noted in the details modal. The following screenshot is an
 example of no SoH information with the VNC button disabled.
 
 ![screenshot](images/soh_no_details.png){: width=800 .center}
-
-## Network Volume
-
-This tab displays a chord graph that shows network flows between nodes using
-flows from Packetbeat fed to Elasticsearch; connections represent the volume of
-traffic between nodes.
-
-!!! tip
-    This information is only available if the packet capture option is enabled
-    for SoH.
-
-This is an example chord graph of a Protonuke server with two clients; one of
-which is requesting content at a delayed interval (therefore less traffic flow).
-
-![screenshot](images/chord.png){: width=800 .center}
-
-If you hover over traffic flow, a tooltip will appear providing additional
-details. (In this screenshot, the mouse is hovering over the traffic for IP
-`192.168.100.1`.)
-
-![screenshot](images/chord_tooltip.png){: width=800 .center}
-
-## SoH Messages
-
-The final tab will display any error messages from the SoH agents.
-
-![screeshot](images/soh_messages.png){: width=800 .center}
 
 ## Configuration
 
