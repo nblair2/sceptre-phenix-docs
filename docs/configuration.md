@@ -103,10 +103,16 @@ Optional values for a node in the topology configuration can include:
 - specific memory values (e.g., `1-16`GB)
 - specific VCPUs values (e.g., `1-4`)
 - additional disk storage
-- file injections
+- file injections (and main disk inject partition)
 - labels, which are typically used by phēnix apps
 - routing ruleset(s)
 - delay triggered by `user`, `time`, or `c2` (command and control)
+
+!!! note
+    If not specified, the default disk partition to inject files into is `1`.
+    This will fail for a disk that is using LVM. In order to use a disk image
+    that's using LVM, set the `inject_partition` to 0 to force phenix to skip
+    injections all together but still snapshot the base image.
 
 #### Delay Start
 
