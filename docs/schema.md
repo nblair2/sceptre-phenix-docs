@@ -299,6 +299,9 @@ minimega_node:
 		hostname:
 		  type: string
 		  example: ADServer
+		  minLength: 1
+		  maxLength: 63
+		  pattern: '^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$'
 		description:
 		  type: string
 		  example: Active Directory Server

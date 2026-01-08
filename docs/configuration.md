@@ -95,6 +95,11 @@ spaces. In addition, each node in the topology must:
 - have an OS type of `linux` or `windows`
 - have a disk image assigned
 
+!!! note
+    Hostnames must be between 1 and 63 characters long, can only contain
+    alphanumeric characters and hyphens, and cannot begin or end with a hyphen.
+    Hostnames should not be used as a FQDN.
+
 ### Optional Values
 
 Optional values for a node in the topology configuration can include:
