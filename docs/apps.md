@@ -261,7 +261,7 @@ spec:
       to time. It must have a route to the `peer` IP address.
 
     * `peer`: Name of peer connection. The peer name must be an alphanumeric
-      and can have hypen or underscore as special characters. It is purely
+      and can have hyphen or underscore as special characters. It is purely
       informational.
 
     * `tunnels`: list of local and remote networks to tunnel through this

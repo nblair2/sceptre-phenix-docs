@@ -288,7 +288,7 @@ spec:
 
     * `captureHosts`: a map of VMs, each specifying a list of network interface
       names to monitor. One Packetbeat VM will be deployed for each VM interface
-      specified. The defalt is `nil`.
+      specified. The default is `nil`.
 
 * `skipInitialNetworkConfigTests`: by default, a set of tests will be run on
   each VM to ensure the VM was assigned the correct IP address and can reach its

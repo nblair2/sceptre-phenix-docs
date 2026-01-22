@@ -65,7 +65,7 @@ To start capturing, press the `play` button.
 ![screenshot](images/vms_multi_capture_start.png)
 
 Once there are valid captures, the `stop` button adjacent to the play button will be enabled.
-To stop all the catpures, press the `stop` button.
+To stop all the captures, press the `stop` button.
 
 ![screenshot](images/vms_multi_capture_stop.png)
 

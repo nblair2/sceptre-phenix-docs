@@ -71,7 +71,7 @@ running `phenix image build --help` will output:
 ```
 Build a virtual disk image
 
-  Used to build a new virtual disk using an exisitng configuration; vmdb2 must
+  Used to build a new virtual disk using an existing configuration; vmdb2 must
   be in path.
 
 Usage:
@@ -105,7 +105,7 @@ Global Flags:
 ### append
 
 The disk image management tool will allow you to add packages, overlays,
-and scripts to exisitng configurations using the `append` command.
+and scripts to existing configurations using the `append` command.
 Command usage is:
 
 ```shell

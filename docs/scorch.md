@@ -75,7 +75,7 @@ spec:
 
 #### `pause` Component
 
-The `pause` component is similar to the `break` component in that it pauses execution of the current Scorch run, but instead of waiting for user intervention, the `pause` component waits for a period of time before continuing. Pause durations can be static using the `duration` key, or random when using the `maximum` (and optionally the `minimum`) key(s). If `maximum` is specified, `duration` cannot be used. If no `maximum` or `duration` is specified, the default is `duration: 10s`. When using `maximum`, the duration will be randomly selected from a uniform distribution between `maximum` and `minimum`. If `minimum` is not specified, it defaults to `0s`. The `pause` component can be configured to run in any stage. The value used for `duration`, `maximum`, and `minimum` keys should be a valid [Golang duration string](https://pkg.go.dev/time#ParseDuration). Two simple examples follow:
+The `pause` component is similar to the `break` component in that it pauses execution of the current Scorch run, but instead of waiting for user intervention, the `pause` component waits for a period of time before continuing. It can be configured with a fixed time or using a probability distribution. The `metadata` block accepts either `duration` (for a fixed time) or `random` (for random times). Random waits can be generated from uniform, gaussian, or exponential distributions. In each case, the distribution's parameters can be specified. 
 
 ```yaml
 spec:
@@ -87,13 +87,38 @@ spec:
         type: pause
         metadata:
           duration: 1m
-      - name: pause-random-1s-60s
+      - name: pause-random
         type: pause
         metadata:
-          minimum: 1s
-          maximum: 60s
+          random: {}                   # default is a uniform distribution between 0 and 10 seconds
+      - name: pause-uniform
+        type: pause
+        metadata:
+        random:
+          uniform:                     # uniform distribution between minimum and maximum
+            minimum: 1s                # if minimum is not set, it defaults to 0s
+            maximum: 60s               # if maximum is not set, it defaults to 10s
+      - name: pause-gaussian
+        type: pause
+        metadata:
+          random:
+            gaussian:                  # gaussian distribution, mean and standard deviation can be set
+              mean: 10s                # these are the defaults if not set explicitly
+              stddev: 2s
+      - name: pause-exponential
+        type: pause
+        metadata:
+          random:
+            exponential:               # exponential distribution, only mean (1 / lambda) is set
+              mean: 10s                # this is the default if not set explicitly
       runs:
-      - start: ["pause-1m", "pause-random-1s-60s"]
+        - name: pauseathon
+          start:
+            - pause-1m
+            - pause-random
+            - pause-uniform
+            - pause-gaussian
+            - pause-exponential
 ```
 
 #### `soh` Component
@@ -124,7 +149,7 @@ spec:
             - ports                # Ensure listeners are running in nodes. Will use `hostListeners` setting in soh app config.
             - custom               # Run custom tests in nodes. Will use `hostCustomTests` setting in soh app config.
             - cpu-load             # Gather CPU load stats from nodes.
-            - flows                # Gather paket flows from ElasticSearch server. Requires `packetCapture` setting to be cofigured in soh app config.
+            - flows                # Gather packet flows from ElasticSearch server. Requires `packetCapture` setting to be configured in soh app config.
           failOnError: true # default is false
           logLevel: debug   # default is info
       runs:
