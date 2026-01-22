@@ -75,9 +75,7 @@ spec:
 
 #### `pause` Component
 
-The `pause` component is similar to the `break` component in that it pauses execution of the current Scorch run, but instead of waiting for user intervention it simply pauses for a predefined duration.
-
-A simple example is as follows. The `pause` component can be configured to run in any stage. The value used for the `duration` key should be a valid [Golang duration string](https://pkg.go.dev/time#ParseDuration).
+The `pause` component is similar to the `break` component in that it pauses execution of the current Scorch run, but instead of waiting for user intervention, the `pause` component waits for a period of time before continuing. Pause durations can be static using the `duration` key, or random when using the `maximum` (and optionally the `minimum`) key(s). If `maximum` is specified, `duration` cannot be used. If no `maximum` or `duration` is specified, the default is `duration: 10s`. When using `maximum`, the duration will be randomly selected from a uniform distribution between `maximum` and `minimum`. If `minimum` is not specified, it defaults to `0s`. The `pause` component can be configured to run in any stage. The value used for `duration`, `maximum`, and `minimum` keys should be a valid [Golang duration string](https://pkg.go.dev/time#ParseDuration). Two simple examples follow:
 
 ```yaml
 spec:
@@ -85,12 +83,17 @@ spec:
   - name: scorch
     metadata:
       components:
-      - name: brief-pause
+      - name: pause-1m
         type: pause
         metadata:
-          duration: 2s
+          duration: 1m
+      - name: pause-random-1s-60s
+        type: pause
+        metadata:
+          minimum: 1s
+          maximum: 60s
       runs:
-      - start: ["brief-pause"]
+      - start: ["pause-1m", "pause-random-1s-60s"]
 ```
 
 #### `soh` Component
