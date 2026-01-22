@@ -150,7 +150,7 @@ filter field and start button to select a desired schedule.
 
 ### From the Command Line Binary
 
-The list of available schedules can be found by running the folowing command.
+The list of available schedules can be found by running the following command.
 
 ```
 $> phenix exp schedulers
